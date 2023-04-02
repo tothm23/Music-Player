@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Music Player</title>
+  </head>
+  <body>
+    <audio id="audio">
+      <source id="source" preload="metadata" />
+    </audio>
+
+    <main>
+      <div id="song-name-box">
+        <h1 id="songName">The Music</h1>
+      </div>
+      
+      <div id="progress">
+        <div id="progress-background"></div>
+        <div id="progressBar"></div>
+      </div>
+
+      <div id="buttons">
+        <button id="prevButton" class="fa-solid fa-backward"></button>
+        <button id="playButton" class="fa-solid fa-play"></button>
+        <button id="nextButton" class="fa-solid fa-forward"></button>
+      </div>
+    </main>
+
+    <script src="https://kit.fontawesome.com/5f1e7d4093.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
