@@ -14,6 +14,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background-position: center;
 }
 
 main {
@@ -25,9 +27,24 @@ main {
   justify-content: center;
   flex-direction: column;
 
-  border: 0.5vh solid;
+  border: 1px solid white;
   border-radius: 3vh;
-  box-shadow: 0 2vh 5vh;
+  box-shadow: 0 0 5vh white;
+}
+
+#bg {
+  position: absolute;
+  z-index: -10;
+  width: 70%;
+  height: 50vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  filter: blur(2vh);
+  background-position: center;
 }
 
 #song-name-box {
@@ -42,6 +59,7 @@ main {
 h1 {
   font-size: 3vh;
   text-align: center;
+  color: white;
 }
 
 #progress {
@@ -85,17 +103,20 @@ button {
   width: 7vh;
   height: 7vh;
 
-  border: 2px solid black;
-  border-radius: 50%;
-  font-size: 1.5vh;
-  box-shadow: 0 2vh 4vh;
   cursor: pointer;
   background: none;
   margin: 2vh;
+
+  border: 1px solid white;
+  color: white;
+  border-radius: 50%;
+  font-size: 1.5vh;
 }
 
 button:hover {
-  color: white;
-  background-color: black;
-  border: 2px solid transparent;
+  box-shadow: 0 0 4vh white;
+  border: 1px solid black;
+  color: black;
+  background-color: white;
+  border: 1px solid transparent;
 }

@@ -88,6 +88,16 @@ progressBar.addEventListener("click", (e) => {
 const setData = (data, index) => {
   songName.innerHTML = data.data[index].name;
   source.src = `http://docs.google.com/uc?export=open&id=${data.data[index].url}`;
+  if (data.data[index].theme === "normal") {
+    document.querySelector("#bg").style.backgroundImage = "url(" + "normal.jpg" + ")";
+    document.body.style.backgroundImage = "url(" + "normal.jpg" + ")";
+  } else if (data.data[index].theme === "edm") {
+    document.querySelector("#bg").style.backgroundImage = "url(" + "edm.jpg" + ")";
+    document.body.style.backgroundImage = "url(" + "edm.jpg" + ")";
+  } else if (data.data[index].theme === "hell") {
+    document.querySelector("#bg").style.backgroundImage = "url(" + "hell.jpg" + ")";
+    document.body.style.backgroundImage = "url(" + "hell.jpg" + ")";
+  }
   audio.load();
 };
 
