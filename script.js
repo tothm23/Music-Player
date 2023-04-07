@@ -78,6 +78,15 @@ audio.addEventListener("timeupdate", (e) => {
   progressBar.style.width = `${progressPercent}%`;
 });
 
+/**
+ * Állapotjelzőbe kattintáskor belepörget a zenébe
+ */
+progressBar.addEventListener("click", (e) => {
+  const width = this.clientWidth;
+  const clientX = e.offsetX;
+
+  audio.currentTime = (clientX / width) * audio.duration;
+});
 
 const setData = (data, index) => {
   songName.innerHTML = data.data[index].name;
