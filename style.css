@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -14,6 +15,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  background-position: center;
 }
 
 main {
@@ -25,9 +28,22 @@ main {
   justify-content: center;
   flex-direction: column;
 
-  border: 0.5vh solid;
   border-radius: 3vh;
-  box-shadow: 0 2vh 5vh;
+}
+
+#bg {
+  position: absolute;
+  z-index: -10;
+  width: 70%;
+  height: 50vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  filter: blur(3vh);
+  background-position: center;
 }
 
 #song-name-box {
@@ -42,6 +58,7 @@ main {
 h1 {
   font-size: 3vh;
   text-align: center;
+  color: white;
 }
 
 #progress {
@@ -56,20 +73,20 @@ h1 {
 
 #progress-background {
   position: absolute;
+
   width: 100%;
   height: 2vh;
 
   border-radius: 3vh;
-  background-color: #ecf0f1;
-  box-shadow: 0 2vh 4vh;
 }
 
 #progressBar {
   position: absolute;
 
   height: 2vh;
+
   border-radius: 3vh;
-  background-color: green;
+  background-color: white;
 }
 
 #buttons {
@@ -85,17 +102,15 @@ button {
   width: 7vh;
   height: 7vh;
 
-  border: 2px solid black;
-  border-radius: 50%;
-  font-size: 1.5vh;
-  box-shadow: 0 2vh 4vh;
   cursor: pointer;
   background: none;
   margin: 2vh;
+  color: white;
+  border-radius: 50%;
+  font-size: 1.5vh;
 }
 
 button:hover {
-  color: white;
-  background-color: black;
-  border: 2px solid transparent;
+  color: black;
+  background-color: white;
 }
