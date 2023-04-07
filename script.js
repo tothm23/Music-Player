@@ -1,10 +1,13 @@
 const audio = document.getElementById("audio");
 const source = document.getElementById("source");
+
 const playButton = document.getElementById("playButton");
 const nextButton = document.getElementById("nextButton");
 const prevButton = document.getElementById("prevButton");
+
 const songName = document.getElementById("songName");
 const progressBar = document.getElementById("progressBar");
+const buttons = document.getElementsByTagName("button");
 
 let index = 0;
 
@@ -75,32 +78,49 @@ audio.addEventListener("timeupdate", (e) => {
   progressBar.style.width = `${progressPercent}%`;
 });
 
-/**
- * Állapotjelzőbe kattintáskor belepörget a zenébe
- */
-progressBar.addEventListener("click", (e) => {
-  const width = this.clientWidth;
-  const clientX = e.offsetX;
-
-  audio.currentTime = (clientX / width) * audio.duration;
-});
 
 const setData = (data, index) => {
   songName.innerHTML = data.data[index].name;
   source.src = `http://docs.google.com/uc?export=open&id=${data.data[index].url}`;
+
   if (data.data[index].theme === "normal") {
-    document.querySelector("#bg").style.backgroundImage = "url(" + "normal.jpg" + ")";
-    document.body.style.backgroundImage = "url(" + "normal.jpg" + ")";
+    setStyle("normal", "#9E9BA0");
   } else if (data.data[index].theme === "edm") {
-    document.querySelector("#bg").style.backgroundImage = "url(" + "edm.jpg" + ")";
-    document.body.style.backgroundImage = "url(" + "edm.jpg" + ")";
+    setStyle("edm", "#79419F");
   } else if (data.data[index].theme === "hell") {
-    document.querySelector("#bg").style.backgroundImage = "url(" + "hell.jpg" + ")";
-    document.body.style.backgroundImage = "url(" + "hell.jpg" + ")";
+    setStyle("hell", "#B81E14");
   }
+
   audio.load();
 };
 
+/**
+ * Stílust rendel a zene hangulatához megfelelően
+ * @param {*} theme
+ * @param {*} color
+ */
+const setStyle = (theme, color) => {
+  document.body.style.backgroundImage = `url(${theme}.jpg)`;
+  document.querySelector("#bg").style.backgroundImage = `url(${theme}.jpg)`;
+  document.querySelector("main").style.border = `1px solid ${color}`;
+  document.getElementById("progress-background").style.backgroundColor = `${color}`;
+
+  document.querySelector("main").addEventListener("mouseenter", () => {
+    document.querySelector("main").style.boxShadow = `0 0 5vh ${color}`;
+  });
+
+  document.querySelector("main").addEventListener("mouseleave", () => {
+    document.querySelector("main").style.boxShadow = "none";
+  });
+
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].style.border = `1px solid ${color}`;
+  }
+};
+
+/**
+ * Esemény rendelése a lejátszáshoz/megállításhoz
+ */
 playButton.addEventListener("click", () => {
   const isPLaying = playButton.classList.contains("fa-play");
 
