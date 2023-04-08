@@ -9,6 +9,8 @@ const songName = document.getElementById("songName");
 const progressBar = document.getElementById("progressBar");
 const buttons = document.getElementsByTagName("button");
 
+const line = document.getElementsByClassName("line");
+
 let index = 0;
 
 // A JSON fájlra kapcsolódik
@@ -88,6 +90,11 @@ progressBar.addEventListener("click", (e) => {
   audio.currentTime = (clientX / width) * audio.duration;
 });
 
+/**
+ * Adatok inicializálása
+ * @param {*} data
+ * @param {*} index
+ */
 const setData = (data, index) => {
   songName.innerHTML = data.data[index].name;
   source.src = `http://docs.google.com/uc?export=open&id=${data.data[index].url}`;
@@ -125,6 +132,10 @@ const setStyle = (theme, color) => {
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].style.border = `1px solid ${color}`;
   }
+
+  for (let i = 0; i < line.length; i++) {
+    line[i].style.backgroundColor = `${color}`;
+  }
 };
 
 /**
@@ -137,11 +148,15 @@ playButton.addEventListener("click", () => {
 });
 
 /**
- * Lejátsza a zenét és ikont cserél
+ * Lejátsza a zenét, ikont cserél, elindítja az animációt
  */
 const playSong = () => {
   playButton.classList.remove("fa-play");
   playButton.classList.add("fa-pause");
+
+  for (let i = 0; i < line.length; i++) {
+    line[i].style.animation = "wave infinite 0.7s alternate-reverse";
+  }
 
   const playPromise = audio.play();
 
@@ -153,12 +168,17 @@ const playSong = () => {
 };
 
 /**
- * Megállítja a zenét és ikont cserél
+ * Megállítja a zenét, ikont cserél, leállítja az animációt
  */
 const pauseSong = () => {
-  const pausePromise = audio.pause();
   playButton.classList.remove("fa-pause");
   playButton.classList.add("fa-play");
+
+  for (let i = 0; i < line.length; i++) {
+    line[i].style.animation = "";
+  }
+
+  const pausePromise = audio.pause();
 
   if (pausePromise !== undefined) {
     pausePromise.then().catch((error) => {
