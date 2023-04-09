@@ -116,21 +116,36 @@ const setData = (data, index) => {
  * @param {*} color
  */
 const setStyle = (theme, color) => {
+  const bg = document.querySelector("#bg");
+  const main = document.querySelector("main");
+
+  bg.style.backgroundImage = `url(${theme}.jpg)`;
+
   document.body.style.backgroundImage = `url(${theme}.jpg)`;
-  document.querySelector("#bg").style.backgroundImage = `url(${theme}.jpg)`;
-  document.querySelector("main").style.border = `1px solid ${color}`;
   document.getElementById("progress-background").style.backgroundColor = `${color}`;
 
-  document.querySelector("main").addEventListener("mouseenter", () => {
-    document.querySelector("main").style.boxShadow = `0 0 5vh ${color}`;
+  main.addEventListener("mouseenter", () => {
+    bg.style.filter = "blur(3vh)";
   });
 
-  document.querySelector("main").addEventListener("mouseleave", () => {
-    document.querySelector("main").style.boxShadow = "none";
+  main.addEventListener("mouseleave", () => {
+    bg.style.filter = "";
   });
 
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].style.border = `1px solid ${color}`;
+    buttons[i].style.color = "white";
+    buttons[i].style.backgroundColor = `${color}`;
+
+    buttons[i].addEventListener("mouseenter", () => {
+      buttons[i].style.backgroundColor = "transparent";
+      buttons[i].style.color = `${color}`;
+    });
+
+    buttons[i].addEventListener("mouseleave", () => {
+      buttons[i].style.backgroundColor = `${color}`;
+      buttons[i].style.color = "white";
+    });
   }
 
   for (let i = 0; i < line.length; i++) {
